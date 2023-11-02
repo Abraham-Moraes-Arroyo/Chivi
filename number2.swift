@@ -13,6 +13,10 @@ import MapKit
 
 struct number2: View {
     
+    func openMap(Address:String){
+        UIApplication.shared.openURL(NSURL(string: "http://maps.apple.com/?address=\(Address)")! as URL)
+    }
+    
     @State private var cameraPosition: MapCameraPosition = .region(.userRegion)
 
     
@@ -48,18 +52,37 @@ struct number2: View {
     
     
     var body: some View {
-        Map(position: $cameraPosition) {
-            Marker("Kimball" , coordinate: Kimball)
-            Marker("Kedzie ", coordinate: Kedzie)
-            Marker("Francisco ",coordinate: Francisco)
-            Marker("Rockwell", coordinate: Rockwell)
-            Marker("Western", coordinate: Western)
-            Marker("Damen ",coordinate: Damen)
-            Marker("Montrose",  coordinate: Montrose)
-            Marker("IrvingPark ", coordinate: IrvingPark)
-            Marker("Addison ",coordinate: Addison)
-            Marker("Paulina", coordinate: Paulina) //Up to 10 markers Before issues
-            Marker("Southport ", coordinate: Southport)
+        
+        
+        let markerArray = [Marker("Kimball" , coordinate: Kimball),
+                         Marker("Kedzie ", coordinate: Kedzie),
+                         Marker("Francisco ",coordinate: Francisco),
+                         Marker("Rockwell", coordinate: Rockwell),
+                         Marker("Western", coordinate: Western),
+                         Marker("Damen ",coordinate: Damen),
+                         Marker("Montrose",  coordinate: Montrose),
+                         Marker("IrvingPark ", coordinate: IrvingPark),
+                         Marker("Addison ",coordinate: Addison),
+                         Marker("Paulina", coordinate: Paulina)]
+        
+        
+        Map(position: $cameraPosition, bounds: MapCameraBounds[markerArray]) {
+//            Button(action:{
+//                openMap(Address: "2125 N. Melvina Ave")
+//            })
+//            Marker("Kimball" , coordinate: Kimball)
+//            Marker("Kedzie ", coordinate: Kedzie)
+//            Marker("Francisco ",coordinate: Francisco)
+//            Marker("Rockwell", coordinate: Rockwell)
+//            Marker("Western", coordinate: Western)
+//            Marker("Damen ",coordinate: Damen)
+//            Marker("Montrose",  coordinate: Montrose)
+//            Marker("IrvingPark ", coordinate: IrvingPark)
+//            Marker("Addison ",coordinate: Addison)
+//            Marker("Paulina", coordinate: Paulina) //Up to 10 markers Before issues
+            
+            
+//            Marker("Southport ", coordinate: Southport)
 //            Marker("Belmont ",coordinate: Belmont)
 //            Marker("Wellington",  coordinate: Wellington)
 //            Marker("Diversey ", coordinate: Diversey)
@@ -82,7 +105,7 @@ struct number2: View {
 
 extension CLLocationCoordinate2D{
     static var userLocation: CLLocationCoordinate2D {
-        return .init(latitude: 25.76, longitude: -80.19)
+        return .init(latitude: 41.879507, longitude: -87.626118)
     }
 }
 
